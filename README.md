@@ -11,7 +11,14 @@ git clone https://github.com/dacort/s3-diff-uploader
 cd s3-diff-uploader
 ```
 
-2. Run against a file
+2. (Optionally) create a venv and install the requirements
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+```
+
+3. Run against a file
 
 ```bash
 python3 differ.py <local-file.csv> <s3://bucket/name-of-target-file.csv.gz>
@@ -20,7 +27,7 @@ python3 differ.py <local-file.csv> <s3://bucket/name-of-target-file.csv.gz>
 > [!NOTE]
 > Files are currently auto-compressed, but you still have to provide the `.gz` extension.
 
-3. Add data to the file, and run the same command.
+4. Add data to the file, and run the same command.
 
 Once the compressed file gets above 5mb, you'll start to see only differential uploads.
 
