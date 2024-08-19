@@ -1,0 +1,32 @@
+direction: right
+
+First Upload: {
+  shape: sequence_diagram
+
+  client -> S3: Initiate Multipart Upload
+  S3 -> client: Upload ID
+  in 5mb chunks: {
+    client.upload_parts -> S3: Upload Part n
+    client.upload_parts -> S3: Upload Part n\[i\]
+    client.upload_parts -> S3: Upload Part n-1
+  }
+  client -> S3: Upload final part
+  Client -> S3: Complete Multipart Upload
+}
+
+Subsequent Upload: {
+  shape: sequence_diagram
+
+  client -> S3: Initiate Multipart Upload
+  S3 -> client: Upload ID
+
+  client -> S3: Upload Part Copy
+  S3 -> S3: Copy existing object
+
+  in 5mb chunks: {
+    client.upload_parts -> S3: Upload Part
+  }
+  Client -> S3: Complete Multipart Upload
+}
+
+First Upload -> Subsequent Upload
