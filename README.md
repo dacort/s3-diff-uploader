@@ -2,6 +2,8 @@
 
 A simple Python tool to demonstrate differential uploading of large and/or compressed files to S3.
 
+![upload_diagram](https://github.com/user-attachments/assets/6c2baa06-bf77-45bd-a2d1-ccede72d3f7a)
+
 ## Usage
 
 1. Clone and change into the repo directory
